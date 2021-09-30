@@ -6,9 +6,9 @@
 ##Results
   //use images and examples of code. compare stock performance between the two years, as well as execution of original and refactored script 
   
-  !VBA_Challenge_2017.png
+  ![2017](VBA_Challenge_2017.png)
  
-  !VBA_Challenge_2018.png
+  ![2018](VBA_Challenge_2018.png)
 
 ##Summary
   //advantages or disadvantages of refactoring code

@@ -18,11 +18,17 @@
  
   ![2018](VBA_Challenge_2018.png)
     ![2018_Orig](VBA_Challenge_2018_Original.png)
+    
+    
+|                    | 2017          | 2018          |
+| -------------      |    ---------- | ------------- |
+| Before Refactoring | 0.797         | 0.789         |
+| After Refactoring  | 0.109         |  0.117        |
 
 
-    Original code required nested For Loops. While looping through all 12 tickers, we looped through each row, meaning that the code in the "For j = 2 to RowCount" code block was run over 36,000 times. 
+ Original code required nested For Loops. While looping through all 12 tickers, we looped through each row, meaning that the code in the "For j = 2 to RowCount" code block was run over 36,000 times. 
 
-    By implementing arrays, we were able to reduce the times a code block was run to just over 3,000 times (one for each row of data). Instead of looping through the tickers, we can check the ticker value against the value we would expect from our array, and update the variables of interest in their own arrays, which are output at the end instead of after each current ticker has been checked. 
+ By implementing arrays, we were able to reduce the times a code block was run to just over 3,000 times (one for each row of data). Instead of looping through the tickers, we can check the ticker value against the value we would expect from our array, and update the variables of interest in their own arrays, which are output at the end instead of after each current ticker has been checked. 
 
 
   [original code required nested for loops]

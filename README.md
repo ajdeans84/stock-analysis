@@ -32,10 +32,10 @@ The following screenshots show the successful implementation of a dynamic displa
   The original code (reproduced below) required nested For Loops. While looping through all 12 tickers, we looped through each row, meaning that the code in the "For j = 2 to RowCount" code block was run over 36,000 times. 
   
   ```
-  **For i = 0 To 11**
+  For i = 0 To 11
     ticker = tickers(i)
     totalVolume = 0
-    **For j = 2 To RowCount**
+    For j = 2 To RowCount
 
   ```
 

@@ -1,12 +1,12 @@
 # Stock Analysis
 
 ## Overview of Project
-   In this project, we looked at the impact of refactoring code has on runtime. By measuring code performance (via time it takes to run), we can see how the way code is written influences the time it takes to compile. This can be helpful information when deciding how to write our code, as merely running may be enough in most cases. However, there are times when refactoring code to improve its design and flow has tremendous payoffs. 
+   In this project, I looked at the impact of refactoring code has on runtime. By measuring code performance (via time it takes to run), I can see how the way code is written influences the time it takes to compile. This can be helpful information when deciding how to write our code, as merely running may be enough in most cases. However, there are times when refactoring code to improve its design and flow has tremendous payoffs. 
 
 ## Results
-  In our original code, performance was fairly similar between running an analysis on the 2017 data and the 2018 data, running in 0.797 seconds and 0.789 seconds, respectively. By utilizing arrays, we can eliminate the need for nested For Loops and reduce the need to run through all rows of the worksheet once for each ticker we want to check. This means the original code ran through over 3,000 rows 12 times each in the original code, but only had to run through the rows once in the refactored code, eliminating an unnecessary 33,000 instances of checking a row for a matching ticker and possibly adding the volume. 
+  In our original code, performance was fairly similar between running an analysis on the 2017 data and the 2018 data, running in 0.797 seconds and 0.789 seconds, respectively. Utilizing arrays can eliminate the need for nested For Loops and reduce the need to run through all rows of the worksheet once for each ticker we want to check. This means the original code ran through over 3,000 rows 12 times each in the original code, but only had to run through the rows once in the refactored code, eliminating an unnecessary 33,000 instances of checking a row for a matching ticker and possibly adding the volume. 
 
-  By refactoring the code, performance for a 2017 analysis dropped to just 0.109 seconds, and 2018 analysis took only 0.117 seconds. We were able to save 0.688 seconds for running through the 2017 data and 0.672 seconds for running through the 2018 data. This may not sound like much, but it was a roughly 86% time savings, as the refactored code ran in 14% of the time it took the original code to run. 
+  By refactoring the code, performance for a 2017 analysis dropped to just 0.109 seconds, and 2018 analysis took only 0.117 seconds. I was able to save 0.688 seconds for running through the 2017 data and 0.672 seconds for running through the 2018 data. This may not sound like much, but it was a roughly 86% time savings, as the refactored code ran in 14% of the time it took the original code to run. 
  
 The table below summarizes the number of seconds the code took to run for each analysis year, rounded to the nearest thousandth. 
 
@@ -18,17 +18,17 @@ The table below summarizes the number of seconds the code took to run for each a
 
 The following screenshots show the successful implementation of a dynamic display of the time taken for the code to run, which included concatentated strings and subtracting the timer as read at time of completion from the timer as read at the time of initilization. A sample of that code is also displayed below.  
  
-  ![2017_Orig](VBA_Challenge_2017_Original.png)
-    ![2018_Orig](VBA_Challenge_2018_Original.png)
+  ![2017_Orig](Images/VBA_Challenge_2017_Original.png)
+    ![2018_Orig](Images/VBA_Challenge_2018_Original.png)
 
-  ![2017](VBA_Challenge_2017.png)
-      ![2018](VBA_Challenge_2018.png)
+  ![2017](Images/VBA_Challenge_2017.png)
+      ![2018](Images/VBA_Challenge_2018.png)
 
 ```
   MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)
 ```
 
-  The original code (reproduced below) required nested For Loops. While looping through all 12 tickers, we looped through each row, meaning that the code in the "For j = 2 to RowCount" code block was run over 36,000 times. 
+  The original code (reproduced below) required nested For Loops. While looping through all 12 tickers, the code looped through each row, meaning that the code in the "For j = 2 to RowCount" code block was run over 36,000 times. 
   
   ```
   For i = 0 To 11
@@ -38,7 +38,7 @@ The following screenshots show the successful implementation of a dynamic displa
 
   ```
 
-  By implementing arrays, we were able to reduce the times a code block was run to just over 3,000 times (one for each row of data). Instead of looping through the tickers, we can check the ticker value against the value we would expect from our array, and update the variables of interest in their own arrays, which are output at the end instead of after each current ticker has been checked. 
+  Implementing arrays reduced the times a code block was run to just over 3,000 times (one for each row of data). Instead of looping through the tickers, we can check the ticker value against the value we would expect from our array, and update the variables of interest in their own arrays, which are output at the end instead of after each current ticker has been checked. 
 
   Here we initialized our arrays;
   ```
@@ -76,6 +76,6 @@ The following screenshots show the successful implementation of a dynamic displa
   An advantage to refactoring this particular code was that it did reduce our runtime. Someone may attempt to refactor code and end up having it take longer to compile, or not dramatically changing the amount of time. In this case, we can see a clear reduction in the total time the code took to compile. Another advantage is that the variables for total volume, starting prices, and ending prices are input into an array and can be accessed later, without running through each row again. (That is, until overwritten by running the code for a different year.) In our original code, the variables for startingPrice, endingPrice, and totalVolume were overwritten for each ticker as we looped through them, but in the refactored code, these variables are entered into an array and can be referenced with the tickerIndex. Without running the entire code again, we could access, say, tickerStartingPrices(4) to see the starting price of ticker "FSLR." In our original code, we lost this value once we switched to the next ticker. 
 
   #### Disadvantage
-  The script did take additional time to refactor. While we saved 0.6 seconds on compile, an additional hour or so was invested in rewriting the code to make this improvement, so a net loss was observed in terms of total time. This is a major disadvantage for code that will not be run more than once. Additionally, we did not create a dynamic array to look at more than the 12 tickers we used for this analysis. For future projects that look at more tickers, we would want to create an array that can add new tickers to itself (by looking through a list and adding anything it does not already contain) and be able to run across tickers other than ones that were manually entered into the array. Until this is implemented, Steve will only be able to perform analyses on these 12 tickers (unless he wants to add more to the list himself or request our services again). 
+  The script did take additional time to refactor. While we saved 0.6 seconds on compile, an additional hour or so was invested in rewriting the code to make this improvement, so a net loss was observed in terms of total time. This is a major disadvantage for code that will not be run more than once. Additionally, I did not create a dynamic array to look at more than the 12 tickers I used for this analysis. For future projects that look at more tickers, I would want to create an array that can add new tickers to itself (by looking through a list and adding anything it does not already contain) and be able to run across tickers other than ones that were manually entered into the array. Until this is implemented, Steve will only be able to perform analyses on these 12 tickers (unless he wants to add more to the list himself or request our services again). 
   
 
